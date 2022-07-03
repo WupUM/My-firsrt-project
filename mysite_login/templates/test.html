@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.Q1 }}
+    {{ form.Q2 }}
+    {{ form.Q3 }}
+ <button type="submit" class="btn btn-primary">提 交</button>
+</form>
+</body>
+</html>
