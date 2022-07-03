@@ -114,10 +114,17 @@ class TestForm(forms.ModelForm):
 
 
 def test(request, nid):
+    if nid != request.session['user_id']:
+        print('Invalid request')
+        return redirect('/')
+
     row_object = models.Test1.objects.filter(user_id=nid).first()
     if request.method == "GET":
         form = TestForm(instance=row_object)
         return render(request, 'test.html', {"form": form})
+
+    if not row_object:
+        row_object = models.Test1.objects.create(user_id=nid)
 
     form = TestForm(data=request.POST, instance=row_object)
     if form.is_valid():
@@ -129,7 +136,9 @@ def test(request, nid):
 
 
 def create(request):
-    new_user_test = models.Test1.objects.create()
-
-    new_user_test.user = models.User.objects.filter(id=id).first().id
-    new_user_test.save()
+    test_inst, created = models.Test1.objects.update_or_create(user_id=request.session['user_id'])
+    form = TestForm(instance=test_inst)
+    return render(request, 'test.html', {"form": form})
+    # models.Test1.objects.create(
+    #     user_id=request.session['user_id'],
+    # )

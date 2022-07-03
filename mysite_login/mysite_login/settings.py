@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'captcha',
     'login',
 
 ]
@@ -85,6 +86,11 @@ DATABASES = {
         'HOST': '127.0.0.1',    #IP
         'PORT': '3306',                   #端口
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': 'sqlite3.db',        #数据库名字
+    # }
+    # 这段是为了其他人测试用的，只需要一个本地文件而不需要复现你的 MYSQL 环境
 }
 
 
