@@ -1,7 +1,6 @@
 # login/views.py
 
 from django.shortcuts import render, redirect
-from . import models
 from .forms import UserForm, RegisterForm
 import hashlib
 from django import forms
@@ -142,3 +141,23 @@ def create(request):
     # models.Test1.objects.create(
     #     user_id=request.session['user_id'],
     # )
+
+
+def match(request, nid):
+    if nid != request.session['user_id']:
+        print('Invalid request')
+        return redirect('/')
+    row_object = models.User.objects.filter(match_status=1).order_by('?').first()
+    if request.method == "GET":
+        return render(request, "match.html", context={"row_object": row_object})
+
+
+def love(request, did, rid):
+    if did != request.session['user_id']:
+        print('Invalid request')
+        return redirect('/')
+    if request.method == "GET":
+        newlove = models.love.objects.create()
+        newlove.user_deliver = request.session['user_id']
+        newlove.user_receive = rid
+        return redirect('/')

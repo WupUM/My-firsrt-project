@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+        <h1>信息详情页面</h1>
+        <div> 用户名：{{row_object.name}}</div>
+        <div>电话号码：{{row_object.email}}</div>
+        <div>
+            <a href="http://127.0.0.1:8000/love/{{ request.session.user_id }}/{{row_object.id}}/"> 喜欢</a>
+        </div>
+
+
+
+    </div>
+</body>
+</html>

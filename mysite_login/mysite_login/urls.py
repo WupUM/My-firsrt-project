@@ -14,5 +14,8 @@ urlpatterns = [
     re_path('detail/(\d)+/', views.detail),
     path('test/<int:nid>/', views.test),
     path('create/', views.create),
+    path('match/<int:nid>/', views.match),
+    path('love/<int:did>/<int:rid>/', views.love),
+
 
 ]

@@ -14,7 +14,12 @@ class User(models.Model):
     email = models.EmailField(unique=True)
     sex = models.CharField(max_length=32, choices=gender, default='男')
     c_time = models.DateTimeField(auto_now_add=True)
-
+    match_status_choices = (
+        (1, "允许匹配"),
+        (2, "暂时不允许匹配"),
+        (3, "匹配成功"),
+    )
+    match_status = models.SmallIntegerField(verbose_name="匹配状态", choices=match_status_choices, default=1)
 
     def __str__(self):
         return self.name
@@ -48,3 +53,8 @@ class Test1(models.Model):
         (4, "D"),
     )
     Q3 = models.SmallIntegerField(verbose_name="问题1", choices=Q3_choices, default=1)
+
+
+class love(models.Model):
+    user_receive = models.SmallIntegerField(verbose_name="收到喜欢", default=1)
+    user_deliver = models.SmallIntegerField(verbose_name="提出喜欢", default=1)

@@ -40,6 +40,7 @@
             <li class="active"><a href="/index/">主页</a></li>
             <li class="active"><a href="/test/{{ request.session.user_id }}/">测试</a></li>
             <li class="active"><a href="/create/">创建</a></li>
+            <li class="active"><a href="/match/{{ request.session.user_id }}/">匹配</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
               {% if request.session.is_login %}
